@@ -1,0 +1,714 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Good Morning, Dr. Sahar</title>
+<meta name="description" content="Something for the bus ride. Tap the sun.">
+<meta property="og:title" content="Good morning, Dr. Sahar ☀️">
+<meta property="og:description" content="Something for the bus ride. Tap the sun.">
+<meta name="theme-color" content="#1d1b4f">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%233b2a86'/%3E%3Ccircle cx='50' cy='62' r='26' fill='%23ffd166'/%3E%3Crect x='0' y='62' width='100' height='38' fill='%23ff6f91'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Courier+Prime:wght@400;700&family=Lexend:wght@400;500;600;700&family=Reenie+Beanie&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Nastaliq+Urdu:wght@700&text=%D8%B3%D8%AD%D8%B1&display=swap">
+<style>
+/* Layout: the page itself dawns. Sky moves from night to morning chapter by chapter; a little bus drives the route to Bath Ave on top. */
+:root{
+  --ink:#24203f; --ink-2:#5f5a7d; --line:rgba(36,32,63,.12); --card:#ffffff;
+  --gold:#ffd166; --peach:#ff9a62; --rose:#ff6f91; --violet:#7b5cf0; --teal:#2ec4b6; --sky:#4d9dff; --coral:#ff7a59; --mint:#7ee0c3;
+  --on-sky:#ffffff;
+  --f-display:"Baloo 2","Arial Rounded MT Bold",system-ui,sans-serif;
+  --f-body:"Lexend",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --f-rx:"Courier Prime","Courier New",ui-monospace,monospace;
+  --f-scrawl:"Reenie Beanie","Bradley Hand","Segoe Print",cursive;
+  --f-ur:"Noto Nastaliq Urdu","Jameel Noori Nastaleeq","Urdu Typesetting","Noto Naskh Arabic",serif;
+  color-scheme:dark;
+}
+html,body{height:100%}
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;overflow:hidden;background:#1d1b4f;color:var(--on-sky);font-family:var(--f-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+button{font:inherit;color:inherit;touch-action:manipulation}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+
+/* sky: six layers, one per chapter */
+.sky{position:fixed;inset:0;z-index:0;pointer-events:none}
+.sky > i{position:absolute;inset:0;opacity:0;transition:opacity 1.4s ease}
+.sky > i.on{opacity:1}
+.s0{background:linear-gradient(180deg,#14123d 0%,#2b2370 55%,#4a2f86 100%);opacity:1!important}
+.s1{background:linear-gradient(180deg,#2b2370 0%,#5a3a9e 50%,#b0479a 100%)}
+.s2{background:linear-gradient(180deg,#4b3196 0%,#a8449a 45%,#ff6f91 100%)}
+.s3{background:linear-gradient(180deg,#7b3a9e 0%,#e2557f 45%,#ff9a62 100%)}
+.s4{background:linear-gradient(180deg,#c2457d 0%,#ff7a59 45%,#ffb547 100%)}
+.s5{background:linear-gradient(180deg,#3a7dff 0%,#7aa8ff 40%,#ffb547 100%)}
+.stars{position:absolute;inset:0 0 40% 0;transition:opacity 1.4s ease;background:
+ radial-gradient(circle at 8% 12%,#fff 0 1px,transparent 1.6px),radial-gradient(circle at 18% 30%,#fff 0 1px,transparent 1.6px),radial-gradient(circle at 29% 8%,#fff 0 1.2px,transparent 1.8px),
+ radial-gradient(circle at 41% 22%,#fff 0 1px,transparent 1.6px),radial-gradient(circle at 55% 6%,#fff 0 1px,transparent 1.6px),radial-gradient(circle at 63% 28%,#fff 0 1.2px,transparent 1.8px),
+ radial-gradient(circle at 74% 14%,#fff 0 1px,transparent 1.6px),radial-gradient(circle at 86% 26%,#fff 0 1px,transparent 1.6px),radial-gradient(circle at 93% 9%,#fff 0 1.2px,transparent 1.8px),
+ radial-gradient(circle at 12% 46%,#fff 0 1px,transparent 1.6px),radial-gradient(circle at 48% 44%,#fff 0 1px,transparent 1.6px),radial-gradient(circle at 82% 50%,#fff 0 1px,transparent 1.6px)}
+.skyline{position:absolute;left:0;right:0;bottom:0;width:100%;height:24vh;opacity:.5}
+
+/* frame */
+.app{position:relative;z-index:2;height:100%;display:grid;grid-template-rows:auto minmax(0,1fr) auto;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+.gutter{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.top{padding-block:10px 4px}
+.top-in{max-width:560px;margin:0 auto}
+.top-row{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.brand{display:flex;align-items:center;gap:8px;font-family:var(--f-display);font-weight:700;font-size:1.05rem;line-height:1.1;text-shadow:0 1px 8px rgba(0,0,0,.2)}
+.brand .sd{width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#fff3b0,var(--gold));box-shadow:0 0 12px rgba(255,209,102,.8);flex:none}
+.icon-btn{width:42px;height:42px;flex:none;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:rgba(255,255,255,.14);color:#fff;display:grid;place-items:center;cursor:pointer}
+.icon-btn svg{width:19px;height:19px}
+.icon-btn.on .x{display:none}
+.icon-btn.on{background:#fff;color:var(--violet)}
+.icon-btn.on svg{animation:bob 1.3s ease-in-out infinite}
+@keyframes bob{50%{transform:translateY(-2px) rotate(-6deg)}}
+
+.road{position:relative;display:flex;justify-content:space-between;margin-top:8px;padding-top:22px}
+.lane{position:absolute;top:26px;height:8px;border-radius:8px;background:rgba(20,16,50,.55);box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)}
+.lane::after{content:"";position:absolute;left:6px;right:6px;top:3px;height:2px;background:repeating-linear-gradient(90deg,rgba(255,209,102,.8) 0 8px,transparent 8px 16px)}
+.stop{position:relative;z-index:1;width:58px;display:flex;flex-direction:column;align-items:center;gap:6px;padding:0;border:0;background:none;cursor:pointer;color:rgba(255,255,255,.75)}
+.stop .dot{width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid rgba(255,255,255,.4);transition:background .3s,border-color .3s,transform .3s}
+.stop.past .dot{background:var(--gold);border-color:var(--gold)}
+.stop.now .dot{background:var(--gold);border-color:#fff;transform:scale(1.25);box-shadow:0 0 14px rgba(255,209,102,.9)}
+.stop .sl{font-size:.64rem;font-weight:600;letter-spacing:.04em;line-height:1.2;text-align:center}
+.stop.now .sl{color:#fff;font-weight:700}
+.stop[disabled]{cursor:default}
+.stop[disabled] .dot{opacity:.6}
+.bus{position:absolute;top:0;left:0;z-index:2;width:46px;height:29px;pointer-events:none;transition:transform 1s cubic-bezier(.5,0,.2,1)}
+.bus svg{display:block;width:100%;height:100%;animation:rumble .5s ease-in-out infinite alternate}
+@keyframes rumble{to{transform:translateY(-1.5px)}}
+
+#stage{overflow-y:auto;overflow-x:hidden;display:flex;flex-direction:column;padding-block:10px 26px;overscroll-behavior:contain;-webkit-overflow-scrolling:touch}
+.scene{width:100%;max-width:560px;margin:auto;display:flex;flex-direction:column;gap:16px}
+.scene.enter{animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+
+.nav{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-block:10px 12px;background:rgba(20,16,50,.28);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-top:1px solid rgba(255,255,255,.18)}
+
+/* shared */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:12px 22px;border-radius:999px;border:1px solid transparent;font-weight:700;font-size:1rem;cursor:pointer;transition:transform .15s,box-shadow .3s,background .2s}
+.btn:active{transform:scale(.95)}
+.btn[disabled]{opacity:.35;cursor:default}
+.btn-white{background:#fff;color:var(--ink)}
+.btn-gold{background:var(--gold);color:var(--ink)}
+.btn-glass{background:rgba(255,255,255,.16);border-color:rgba(255,255,255,.4);color:#fff}
+.round{width:50px;padding:0;flex:none;font-size:1.2rem}
+.next{white-space:nowrap;min-width:0}
+.next.ready{animation:ready 1.8s ease-out infinite}
+@keyframes ready{0%{box-shadow:0 0 0 0 rgba(255,209,102,.8)}100%{box-shadow:0 0 0 14px rgba(255,209,102,0)}}
+.head{display:flex;flex-direction:column;gap:6px;text-shadow:0 1px 12px rgba(20,10,60,.25)}
+.eyebrow{margin:0;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.85)}
+.title{margin:0;font-family:var(--f-display);font-weight:800;font-size:clamp(2.2rem,9.5vw,3rem);line-height:1;letter-spacing:-.01em;text-wrap:balance}
+.lede{margin:0;font-size:1.02rem;color:rgba(255,255,255,.92);text-wrap:pretty}
+.card{background:var(--card);color:var(--ink);border-radius:24px;box-shadow:0 22px 44px -26px rgba(20,10,60,.7)}
+.status{margin:0;text-align:center;font-size:.82rem;font-weight:600;color:rgba(255,255,255,.9)}
+.ev{display:grid;grid-template-rows:0fr;transition:grid-template-rows .45s ease}
+.ev > span{overflow:hidden}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.96)}to{opacity:1;transform:none}}
+.pop{animation:pop .5s cubic-bezier(.3,1.4,.5,1) both}
+.ur{font-family:var(--f-ur);font-weight:700;direction:rtl;line-height:1.9}
+
+/* 1 name acrostic */
+.letters{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.lt{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;aspect-ratio:3/4;max-width:100%;padding:6px 2px;border-radius:20px;border:2px solid rgba(255,255,255,.45);background:rgba(255,255,255,.12);cursor:pointer;transition:background .4s,border-color .4s,transform .2s}
+.lt:active{transform:scale(.94)}
+.lt .L{font-family:var(--f-display);font-weight:800;font-size:clamp(2rem,10vw,2.8rem);line-height:1}
+.lt .w{font-size:.6rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;opacity:0;transition:opacity .4s;text-align:center;line-height:1.1}
+.lt.on{background:var(--c);border-color:#fff;box-shadow:0 12px 24px -12px var(--c)}
+.lt.on .w{opacity:1}
+.lt:not(.on)::after{content:"";position:absolute;top:8px;right:8px;width:7px;height:7px;border-radius:50%;background:#fff;animation:blink 1.6s ease-in-out infinite}
+@keyframes blink{50%{opacity:.25}}
+.lt-card{padding:16px 18px;display:flex;flex-direction:column;gap:4px;min-height:104px}
+.lt-card b{font-family:var(--f-display);font-weight:800;font-size:1.5rem;line-height:1.1}
+.lt-card span{color:var(--ink-2)}
+.meaning{padding:18px 20px;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;background:linear-gradient(160deg,#fff,#fff4e3)}
+.meaning .ur{margin:0;font-size:2.6rem;color:var(--coral)}
+.meaning p{margin:0}
+.meaning .big{font-family:var(--f-display);font-weight:700;font-size:1.3rem;line-height:1.25}
+.meaning .sm{color:var(--ink-2);font-size:.95rem}
+
+/* 2 rx pad */
+.rx{position:relative;padding:18px 18px 16px;border-radius:14px 14px 24px 24px;background:#fffdf8;color:var(--ink);font-family:var(--f-rx);box-shadow:0 26px 46px -26px rgba(20,10,60,.75)}
+.rx::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;border-radius:14px 14px 0 0;background:linear-gradient(90deg,var(--teal),var(--sky),var(--violet),var(--rose),var(--peach),var(--gold))}
+.rx-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px;padding-top:6px}
+.rx-sym{font-family:Georgia,"Times New Roman",serif;font-size:3rem;line-height:.9;color:var(--violet)}
+.rx-meta{flex:1;min-width:0;display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 10px;font-size:.82rem}
+.rx-meta dt{color:var(--ink-2)}
+.rx-meta dd{margin:0;font-weight:700}
+.rx-list{list-style:none;margin:14px 0 0;padding:12px 0 0;border-top:1.5px dashed rgba(36,32,63,.2);display:flex;flex-direction:column;gap:6px}
+.dose{display:grid;grid-template-columns:62px minmax(0,1fr);align-items:center;gap:12px;width:100%;padding:10px 4px;border:0;border-radius:14px;background:none;text-align:left;cursor:pointer;color:var(--ink);font-family:var(--f-rx);transition:background .3s}
+.dose:hover{background:rgba(123,92,240,.06)}
+.cap{position:relative;display:flex;width:58px;height:24px}
+.cap i{display:block;width:29px;height:24px;transition:transform .45s cubic-bezier(.3,1.5,.5,1)}
+.cap i:first-child{border-radius:12px 0 0 12px;background:var(--a)}
+.cap i:last-child{border-radius:0 12px 12px 0;background:var(--b)}
+.cap::after{content:"";position:absolute;left:6px;top:4px;width:18px;height:5px;border-radius:5px;background:rgba(255,255,255,.55)}
+.dose.open .cap i:first-child{transform:translateX(-5px) rotate(-16deg)}
+.dose.open .cap i:last-child{transform:translateX(5px) rotate(16deg)}
+.dose.open .cap::after{opacity:0}
+.d-name{font-weight:700;font-size:1.02rem}
+.d-name small{font-weight:400;color:var(--ink-2);font-size:.78rem}
+.dose .ev > span{font-size:.9rem;line-height:1.35;color:var(--ink)}
+.dose.open .ev{grid-template-rows:1fr}
+.dose.open .ev > span{padding-top:4px}
+.rx-foot{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;margin-top:12px;padding-top:12px;border-top:1.5px dashed rgba(36,32,63,.2);font-size:.78rem;color:var(--ink-2)}
+.rx-foot .sig{font-family:var(--f-scrawl);font-size:2.2rem;line-height:.8;color:var(--violet)}
+.rx-foot b{display:block;color:var(--ink)}
+
+/* 3 qbank */
+.qb{overflow:hidden}
+.qb-bar{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:10px 16px;background:#2b2a6b;color:#fff;font-size:.74rem;letter-spacing:.04em}
+.qb-bar b{font-weight:700}
+.qb-tools{display:flex;gap:8px}
+.qb-tools button{padding:5px 10px;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-size:.72rem;font-weight:600;cursor:pointer}
+.qb-tools button[aria-pressed="true"]{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.qb-body{padding:16px;display:flex;flex-direction:column;gap:12px}
+.vignette{margin:0;font-size:.98rem;line-height:1.6}
+.labs{margin:0;padding:12px 14px;border-radius:14px;background:#f4f2ff;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 12px;font-size:.86rem}
+.labs dt{color:var(--ink-2)}
+.labs dd{margin:0;font-weight:700;text-align:right}
+.labs dd.hi{color:var(--coral)}
+.labs dd.lo{color:var(--sky)}
+.qask{margin:0;font-weight:700}
+.opts{display:flex;flex-direction:column;gap:8px}
+.opt{display:grid;grid-template-columns:30px minmax(0,1fr);gap:10px;align-items:start;width:100%;padding:10px 12px;border-radius:14px;border:1.5px solid var(--line);background:#fff;text-align:left;cursor:pointer;color:var(--ink);transition:border-color .3s,background .3s}
+.opt .k{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:.85rem;border:1.5px solid rgba(36,32,63,.3)}
+.opt .t{padding-top:3px;font-weight:600}
+.opt .fb{grid-column:2;font-size:.86rem;font-weight:400;color:var(--ink-2)}
+.opt.wrong{border-color:rgba(255,122,89,.6);background:#fff5f1}
+.opt.wrong .k{background:var(--coral);border-color:var(--coral);color:#fff}
+.opt.right{border-color:var(--teal);background:#eefcf9}
+.opt.right .k{background:var(--teal);border-color:var(--teal);color:#fff}
+.explain{padding:14px 16px;border-radius:16px;background:linear-gradient(160deg,#eefcf9,#f4f2ff);display:flex;flex-direction:column;gap:8px}
+.explain p{margin:0;font-size:.95rem}
+.explain .obj{padding:10px 12px;border-radius:12px;background:#fff;border-left:4px solid var(--teal)}
+.explain .pct{font-size:.8rem;color:var(--ink-2)}
+
+/* 4 steps */
+.climb{display:flex;flex-direction:column;gap:8px}
+.step{display:grid;grid-template-columns:44px minmax(0,1fr);gap:12px;align-items:center;width:100%;padding:12px 14px;border-radius:18px;border:1.5px solid rgba(255,255,255,.45);background:rgba(255,255,255,.14);color:#fff;text-align:left;cursor:pointer;transition:background .4s,border-color .4s,transform .15s;margin-left:calc(var(--n) * 10px);width:calc(100% - var(--n) * 10px)}
+.step:active{transform:scale(.97)}
+.step .ic{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;font-size:1.35rem;background:rgba(255,255,255,.2)}
+.step .st{font-weight:700;line-height:1.25}
+.step .sd{font-size:.86rem;opacity:.9}
+.step .ev > span{font-size:.86rem;line-height:1.35}
+.step.on .ev{grid-template-rows:1fr}
+.step.on .ev > span{padding-top:3px}
+.step.on{background:#fff;color:var(--ink);border-color:#fff}
+.step.on .ic{background:var(--c)}
+.step.future{border-style:dashed}
+.step.future.on{background:linear-gradient(120deg,#fff7df,#fff);box-shadow:0 0 0 3px rgba(255,209,102,.7),0 16px 30px -18px rgba(255,180,60,.9)}
+.divider{display:flex;align-items:center;gap:10px;font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.9)}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:rgba(255,255,255,.4)}
+.quote{margin:0;padding:14px 16px;border-radius:18px;background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.35);font-size:.95rem}
+.quote b{display:block;font-family:var(--f-display);font-size:1.15rem}
+
+/* 5 bus stop */
+.arrive{display:flex;flex-direction:column;align-items:center;gap:14px;text-align:center}
+.sr{display:flex;align-items:center;justify-content:center;min-width:240px;padding:12px 18px;border-radius:10px;background:#141230;border:2px solid #2d2a55;font-family:var(--f-rx);font-weight:700;font-size:1.15rem;letter-spacing:.14em;text-transform:uppercase;color:#3b3766;transition:color .3s,text-shadow .3s}
+.sr.lit{color:#ff5a3c;text-shadow:0 0 12px rgba(255,90,60,.9)}
+.street{position:relative;width:100%;height:130px;border-radius:24px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.18),rgba(255,255,255,.06))}
+.street .ground{position:absolute;left:0;right:0;bottom:0;height:34px;background:#3a3560}
+.street .ground::after{content:"";position:absolute;left:0;right:0;top:15px;height:3px;background:repeating-linear-gradient(90deg,var(--gold) 0 18px,transparent 18px 34px)}
+.street .sign{position:absolute;right:5%;bottom:34px;display:flex;flex-direction:column;align-items:center}
+.street .sign b{padding:5px 8px;border-radius:6px;background:#fff;color:var(--ink);font-size:.62rem;font-weight:700;letter-spacing:.06em;white-space:nowrap}
+.street .sign i{width:4px;height:44px;background:#d8d4ee}
+.bigbus{position:absolute;bottom:22px;left:-140px;width:130px;height:82px;transition:left 1.6s cubic-bezier(.3,.8,.3,1)}
+.arrive.here .bigbus{left:calc(100% - 236px)}
+.bigbus svg{width:100%;height:100%;display:block}
+
+/* cover */
+.cover{position:fixed;inset:0;z-index:60;display:flex;flex-direction:column;overflow-y:auto;padding-block:max(24px,env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-bottom,0px));padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px));background:linear-gradient(180deg,#14123d 0%,#2b2370 60%,#6a3a9e 100%)}
+.cover.leaving{animation:coverOut .9s ease forwards}
+@keyframes coverOut{50%{opacity:1}to{opacity:0}}
+.cover-in{margin:auto;width:100%;max-width:420px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center}
+.cv-ur{margin:0;font-size:clamp(4rem,22vw,6rem);color:var(--gold);text-shadow:0 0 30px rgba(255,209,102,.45)}
+.cv-t{margin:0;font-family:var(--f-display);font-weight:800;font-size:clamp(2rem,9vw,2.6rem);line-height:1.05}
+.cv-s{margin:0;color:rgba(255,255,255,.85)}
+.horizon{position:relative;width:260px;max-width:100%;height:150px;margin-top:6px;padding:0;border:0;background:none;cursor:pointer;overflow:hidden;border-radius:0 0 30px 30px}
+.horizon .sunb{position:absolute;left:50%;bottom:-62px;width:120px;height:120px;margin-left:-60px;border-radius:50%;background:radial-gradient(circle at 40% 38%,#fffbe0,var(--gold) 45%,var(--peach));box-shadow:0 0 50px 16px rgba(255,190,80,.45);transition:bottom 1.2s cubic-bezier(.2,.9,.3,1.15);animation:breathe 2.4s ease-in-out infinite}
+@keyframes breathe{50%{box-shadow:0 0 70px 24px rgba(255,190,80,.6)}}
+.horizon.up .sunb{bottom:34px}
+.horizon .hz{position:absolute;left:0;right:0;bottom:0;height:34px;background:linear-gradient(180deg,#ff6f91,#b0479a);border-top:2px solid rgba(255,255,255,.5)}
+.cv-hint{margin:0;min-height:1.5em;font-weight:700;color:var(--gold);animation:blink 2s ease-in-out infinite}
+.cv-note{margin:0;font-size:.88rem;color:rgba(255,255,255,.8)}
+
+/* finale */
+.finale{position:fixed;inset:0;z-index:50;display:flex;flex-direction:column;overflow-y:auto;padding-block:max(28px,env(safe-area-inset-top,0px)) max(28px,env(safe-area-inset-bottom,0px));padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px));background:linear-gradient(180deg,#3a7dff 0%,#ff7a8a 55%,#ffb547 100%);color:#fff}
+.fin-in{margin:auto;max-width:500px;display:flex;flex-direction:column;align-items:center;gap:12px;text-align:center;text-shadow:0 1px 14px rgba(60,20,80,.25)}
+.fin-ur{margin:0;font-size:clamp(3.4rem,18vw,4.8rem);color:#fff6cf}
+.fin-sm{margin:0;font-size:.78rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+.fin-big{margin:0;font-family:var(--f-display);font-weight:800;font-size:clamp(2.3rem,10vw,3.4rem);line-height:1}
+.fin-p{margin:0;font-size:1.06rem;max-width:27em}
+.fin-sig{margin:4px 0 0;font-family:var(--f-scrawl);font-size:3rem;line-height:.8}
+.fin-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:6px}
+.tiny{margin:0;font-size:.68rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;opacity:.85}
+
+#fx{position:fixed;inset:0;z-index:80;width:100%;height:100%;pointer-events:none;display:block}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+</style>
+</head>
+<body>
+
+<div class="sky" aria-hidden="true">
+  <i class="s0 on"></i><i class="s1"></i><i class="s2"></i><i class="s3"></i><i class="s4"></i><i class="s5"></i>
+  <span class="stars" id="stars"></span>
+  <svg class="skyline" viewBox="0 0 400 100" preserveAspectRatio="xMidYMax slice"><g fill="#120f33"><rect x="0" y="62" width="26" height="38"/><rect x="24" y="44" width="20" height="56"/><rect x="46" y="58" width="16" height="42"/><rect x="64" y="30" width="22" height="70"/><rect x="88" y="52" width="18" height="48"/><rect x="108" y="40" width="14" height="60"/><rect x="124" y="60" width="24" height="40"/><rect x="150" y="34" width="18" height="66"/><rect x="170" y="54" width="20" height="46"/><rect x="192" y="22" width="16" height="78"/><rect x="198" y="12" width="4" height="12"/><rect x="210" y="48" width="22" height="52"/><rect x="234" y="62" width="16" height="38"/><rect x="252" y="38" width="24" height="62"/><rect x="278" y="56" width="16" height="44"/><rect x="296" y="30" width="18" height="70"/><rect x="316" y="50" width="22" height="50"/><rect x="340" y="64" width="16" height="36"/><rect x="358" y="42" width="20" height="58"/><rect x="380" y="58" width="20" height="42"/></g></svg>
+</div>
+
+<div class="app" id="app">
+  <header class="top gutter">
+    <div class="top-in">
+      <div class="top-row">
+        <span class="brand"><span class="sd"></span>Good morning, Dr. Sahar</span>
+        <button class="icon-btn" id="sound" type="button" aria-pressed="false" aria-label="Turn music on">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/><path class="x" d="M3 3l18 18"/></svg>
+        </button>
+      </div>
+      <nav class="road" id="road" aria-label="Chapters">
+        <span class="lane" id="lane"></span>
+        <button class="stop" type="button"><span class="dot"></span><span class="sl">Name</span></button>
+        <button class="stop" type="button"><span class="dot"></span><span class="sl">Rx</span></button>
+        <button class="stop" type="button"><span class="dot"></span><span class="sl">Q bank</span></button>
+        <button class="stop" type="button"><span class="dot"></span><span class="sl">Steps</span></button>
+        <button class="stop" type="button"><span class="dot"></span><span class="sl">Bath Ave</span></button>
+        <span class="bus" id="bus" aria-hidden="true"><svg viewBox="0 0 48 30"><rect x="2" y="4" width="42" height="20" rx="6" fill="#ffd166"/><rect x="2" y="15" width="42" height="3" fill="#ff7a59"/><g fill="#bfe8ff"><rect x="6" y="7" width="8" height="6" rx="1.5"/><rect x="16" y="7" width="8" height="6" rx="1.5"/><rect x="26" y="7" width="8" height="6" rx="1.5"/></g><rect x="36" y="7" width="6" height="11" rx="1.5" fill="#bfe8ff"/><circle cx="12" cy="25" r="4" fill="#2b2a4a"/><circle cx="34" cy="25" r="4" fill="#2b2a4a"/><circle cx="12" cy="25" r="1.6" fill="#ddd"/><circle cx="34" cy="25" r="1.6" fill="#ddd"/><circle cx="43" cy="20" r="1.4" fill="#fff6b0"/></svg></span>
+      </nav>
+    </div>
+  </header>
+
+  <main id="stage" class="gutter">
+
+    <!-- 1 name -->
+    <section class="scene">
+      <div class="head">
+        <p class="eyebrow">Stop 1 of 5 · Your name</p>
+        <h1 class="title">Five letters, all true</h1>
+        <p class="lede">Some days feel heavy. So here's a reminder of who you actually are. Tap each letter.</p>
+      </div>
+      <div class="letters">
+        <button class="lt" type="button" aria-pressed="false" style="--c:var(--rose)" data-t="Strong" data-d="California, then Nebraska, now New York. A whole new city, and you're still standing tall."><span class="L">S</span><span class="w">Strong</span></button>
+        <button class="lt" type="button" aria-pressed="false" style="--c:var(--violet)" data-t="Ambitious" data-d="An MD from Osh State University, now building a US medical career from scratch. That takes real ambition."><span class="L">A</span><span class="w">Ambitious</span></button>
+        <button class="lt" type="button" aria-pressed="false" style="--c:var(--teal)" data-t="Hardworking" data-d="Pharmacy by day, USMLE by night. Last night included. I saw how hard you worked."><span class="L">H</span><span class="w">Hard&shy;working</span></button>
+        <button class="lt" type="button" aria-pressed="false" style="--c:var(--coral)" data-t="All heart" data-d="Even on your own tiring days, you made sure I had dinner and told me to take care of myself."><span class="L">A</span><span class="w">All heart</span></button>
+        <button class="lt" type="button" aria-pressed="false" style="--c:var(--sky)" data-t="Resilient" data-d="Late buses, cold bus stops, 10:30 PM finishes. And you still show up, every single day."><span class="L">R</span><span class="w">Resilient</span></button>
+      </div>
+      <div class="lt-card card" id="ltCard" aria-live="polite"><b>Tap a letter</b><span>Each one stands for something I've seen in you.</span></div>
+      <div class="meaning card pop" id="meaning" hidden>
+        <p class="ur" lang="ur">سحر</p>
+        <p class="big">And Sahar means dawn. Zaman means time.</p>
+        <p class="sm">Put together, your name says your time is just beginning. Fitting, for someone whose best days are still ahead.</p>
+      </div>
+    </section>
+
+    <!-- 2 rx -->
+    <section class="scene" hidden>
+      <div class="head">
+        <p class="eyebrow">Stop 2 of 5 · Today's prescription</p>
+        <h2 class="title">Rx for Dr. Sahar</h2>
+        <p class="lede">You fill prescriptions all day. Here's one written for you. Tap each capsule.</p>
+      </div>
+      <article class="rx">
+        <div class="rx-top">
+          <span class="rx-sym" aria-hidden="true">℞</span>
+          <dl class="rx-meta">
+            <dt>Patient</dt><dd>Dr. Sahar Zaman</dd>
+            <dt>Date</dt><dd id="rxDate">Today</dd>
+            <dt>Prescriber</dt><dd>Seemab (not licensed, very sure)</dd>
+          </dl>
+        </div>
+        <ul class="rx-list">
+          <li><button class="dose" type="button" aria-pressed="false"><span class="cap" style="--a:#ff9a62;--b:#ffd166"><i></i><i></i></span><span><span class="d-name">Chai ☕ <small>1 cup PO</small></span><span class="ev"><span>Sig: take before the bus. Breakfast from the next stop counts.</span></span></span></button></li>
+          <li><button class="dose" type="button" aria-pressed="false"><span class="cap" style="--a:#4d9dff;--b:#bfe8ff"><i></i><i></i></span><span><span class="d-name">Jacket 🧥 <small>apply daily</small></span><span class="ev"><span>Sig: wear even when it looks sunny. Sunny does not mean warm. We learned this.</span></span></span></button></li>
+          <li><button class="dose" type="button" aria-pressed="false"><span class="cap" style="--a:#2ec4b6;--b:#7ee0c3"><i></i><i></i></span><span><span class="d-name">Patience 🚌 <small>PRN</small></span><span class="ev"><span>Sig: take as needed when the bus is 22 minutes late. Again.</span></span></span></button></li>
+          <li><button class="dose" type="button" aria-pressed="false"><span class="cap" style="--a:#ff6f91;--b:#ffc0d0"><i></i><i></i></span><span><span class="d-name">Dinner 🍜 <small>1 plate nightly</small></span><span class="ev"><span>Sig: no skipping. “Khati hun na” is not a dose. Halal Xpress lo mein counts.</span></span></span></button></li>
+          <li><button class="dose" type="button" aria-pressed="false"><span class="cap" style="--a:#7b5cf0;--b:#c9b8ff"><i></i><i></i></span><span><span class="d-name">Pride 💛 <small>after every study night</small></span><span class="ev"><span>Sig: one dose after every late night with USMLE. Like last night. Refills: unlimited.</span></span></span></button></li>
+          <li><button class="dose" type="button" aria-pressed="false"><span class="cap" style="--a:#ffd166;--b:#fff1b8"><i></i><i></i></span><span><span class="d-name">Weekends off 😴 <small>coming soon</small></span><span class="ev"><span>Sig: you said you want weekends off too. Pending approval from life. In sha Allah, soon.</span></span></span></button></li>
+        </ul>
+        <div class="rx-foot"><span><b>Refills: unlimited</b>Dispense as written</span><span class="sig">Seemab</span></div>
+      </article>
+      <p class="status" id="rxStatus" aria-live="polite">0 of 6 doses opened</p>
+    </section>
+
+    <!-- 3 qbank -->
+    <section class="scene" hidden>
+      <div class="head">
+        <p class="eyebrow">Stop 3 of 5 · Practice question</p>
+        <h2 class="title">One for your Q bank</h2>
+        <p class="lede">You've done enough hard questions this week. This one is easy, I promise.</p>
+      </div>
+      <article class="qb card">
+        <div class="qb-bar"><span>Item <b>1 of 1</b> · Block: Mornings</span><span class="qb-tools"><button type="button" id="labBtn" aria-pressed="false">Lab values</button><button type="button" id="markBtn" aria-pressed="false">⚑ Mark</button></span></div>
+        <div class="qb-body">
+          <p class="vignette">A brave international medical graduate from Osh State University presents to a Brooklyn bus stop on a cold morning. She reports a long commute, a full shift ahead at the pharmacy, and a late night of USMLE practice. She moved across the country this month. On examination, she is tired but determined, with an unusually large heart and no intention of giving up.</p>
+          <dl class="labs" id="labs" hidden>
+            <dt>Determination</dt><dd class="hi">Critically high</dd>
+            <dt>Kindness</dt><dd class="hi">Above reference range</dd>
+            <dt>Sleep</dt><dd class="lo">Low (please correct)</dd>
+            <dt>Chai level</dt><dd class="lo">Pending</dd>
+            <dt>Potential</dt><dd class="hi">Unmeasurable</dd>
+          </dl>
+          <p class="qask">Which of the following is the most likely diagnosis?</p>
+          <div class="opts" id="opts">
+            <button class="opt" type="button" data-fb="Not quite. Tired is not the same as done."><span class="k">A</span><span class="t">Burnout</span></button>
+            <button class="opt" type="button" data-fb="Partial credit. Mini Pakistan in Brooklyn is helping 🙄"><span class="k">B</span><span class="t">Homesickness</span></button>
+            <button class="opt" type="button" data-fb="Contributing factor. Treat with 1 cup PO. Not the diagnosis."><span class="k">C</span><span class="t">Acute chai deficiency</span></button>
+            <button class="opt" type="button" data-right="1"><span class="k">D</span><span class="t">Future attending physician, right on schedule</span></button>
+            <button class="opt" type="button" data-fb="Understandable after a 22 minute delay. Still not it."><span class="k">E</span><span class="t">Bus related stress disorder</span></button>
+          </div>
+          <div class="explain pop" id="explain" hidden>
+            <p><b>Correct. D.</b> Classic presentation. Risk factors include an MD from Osh State, relentless hard work and refusing to quit. Management: keep going, eat breakfast, and call Seemab after work. Prognosis: excellent.</p>
+            <p class="obj"><b>Educational objective:</b> Hard days are part of the path. They are not proof you're off it.</p>
+            <p class="pct">100% of reviewers answered correctly. Sample size: one, very sure.</p>
+          </div>
+        </div>
+      </article>
+    </section>
+
+    <!-- 4 steps -->
+    <section class="scene" hidden>
+      <div class="head">
+        <p class="eyebrow">Stop 4 of 5 · Step by step</p>
+        <h2 class="title">Look how far you've climbed</h2>
+        <p class="lede">Tap each step. The first four are already done.</p>
+      </div>
+      <div class="climb">
+        <button class="step" type="button" aria-pressed="false" style="--n:0;--c:var(--rose)"><span class="ic">✈️</span><span><span class="st">Moved to New York</span><span class="ev"><span>California, Nebraska, now here. New city, new everything, on your own two feet.</span></span></span></button>
+        <button class="step" type="button" aria-pressed="false" style="--n:1;--c:var(--teal)"><span class="ic">💊</span><span><span class="st">First New York job</span><span class="ev"><span>Bath Ave. Long rides, long shifts, and you keep showing up.</span></span></span></button>
+        <button class="step" type="button" aria-pressed="false" style="--n:2;--c:var(--violet)"><span class="ic">🩺</span><span><span class="st">Interviewed with a panel of doctors</span><span class="ev"><span>Friday. You walked in, nervous, and handled it.</span></span></span></button>
+        <button class="step" type="button" aria-pressed="false" style="--n:3;--c:var(--coral)"><span class="ic">📚</span><span><span class="st">USMLE prep, every night</span><span class="ev"><span>Including last night. That's exactly how it gets done.</span></span></span></button>
+        <p class="divider">Next, In sha Allah</p>
+        <button class="step future" type="button" aria-pressed="false" style="--n:4;--c:var(--gold)"><span class="ic">📝</span><span><span class="st">USMLE Step 1</span><span class="ev"><span>Passed. Manifesting it now.</span></span></span></button>
+        <button class="step future" type="button" aria-pressed="false" style="--n:5;--c:var(--gold)"><span class="ic">🧠</span><span><span class="st">Step 2 CK</span><span class="ev"><span>Then this one. One step at a time.</span></span></span></button>
+        <button class="step future" type="button" aria-pressed="false" style="--n:6;--c:var(--gold)"><span class="ic">💌</span><span><span class="st">Match Day</span><span class="ev"><span>The email you'll read ten times.</span></span></span></button>
+        <button class="step future" type="button" aria-pressed="false" style="--n:7;--c:var(--gold)"><span class="ic">🥼</span><span><span class="st">Your white coat in New York</span><span class="ev"><span>Dr. Sahar Zaman, on rounds. I'll be the proudest person in the room.</span></span></span></button>
+      </div>
+      <p class="quote" id="stepQuote" hidden><b>“Step by step.”</b>I told you I'm happy you're progressing through everything step by step. I meant it, and I still do.</p>
+    </section>
+
+    <!-- 5 arrive -->
+    <section class="scene" hidden>
+      <div class="head">
+        <p class="eyebrow">Stop 5 of 5 · Almost there</p>
+        <h2 class="title">Next stop: Bath Ave</h2>
+        <p class="lede">This is your stop. Pull the cord.</p>
+      </div>
+      <div class="arrive" id="arrive">
+        <div class="sr" id="sr" aria-live="polite">Stop requested</div>
+        <div class="street">
+          <span class="sign"><b>BATH AVE</b><i></i></span>
+          <span class="bigbus"><svg viewBox="0 0 130 82" aria-hidden="true"><rect x="4" y="6" width="120" height="58" rx="14" fill="#ffd166"/><rect x="4" y="40" width="120" height="7" fill="#ff7a59"/><g fill="#bfe8ff"><rect x="14" y="14" width="22" height="18" rx="4"/><rect x="42" y="14" width="22" height="18" rx="4"/><rect x="70" y="14" width="22" height="18" rx="4"/></g><rect x="100" y="14" width="18" height="34" rx="4" fill="#bfe8ff"/><circle cx="32" cy="66" r="11" fill="#2b2a4a"/><circle cx="96" cy="66" r="11" fill="#2b2a4a"/><circle cx="32" cy="66" r="4.5" fill="#ddd"/><circle cx="96" cy="66" r="4.5" fill="#ddd"/><circle cx="120" cy="54" r="3.5" fill="#fff6b0"/><text x="60" y="58" font-family="Arial,sans-serif" font-weight="700" font-size="8" fill="#24203f" text-anchor="middle">DR. SAHAR EXPRESS</text></svg></span>
+          <span class="ground"></span>
+        </div>
+        <button class="btn btn-white" id="cord" type="button">Pull the cord 🔔</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="nav gutter">
+    <button class="btn btn-glass round" id="back" type="button" aria-label="Previous stop">←</button>
+    <button class="btn btn-white next" id="next" type="button"><span id="nextLabel">Next</span><span aria-hidden="true">→</span></button>
+  </footer>
+</div>
+
+<div class="finale" id="finale" hidden>
+  <div class="fin-in">
+    <p class="fin-ur ur" lang="ur">سحر</p>
+    <p class="fin-sm">Good morning, Dr. Sahar</p>
+    <h2 class="fin-big" id="finTitle" tabindex="-1">Go shine today.</h2>
+    <p class="fin-p">You are stronger than this week. Bath Ave is lucky to have you, and one day a hospital in this city will be too.</p>
+    <p class="fin-p">Eat something before your shift. Thik hai? 😏</p>
+    <p class="fin-p"><b>Proud of you. Always.</b></p>
+    <p class="fin-sig">Seemab</p>
+    <div class="fin-row">
+      <button class="btn btn-glass" id="again" type="button">Ride again</button>
+      <button class="btn btn-white" id="toSteps" type="button">See your steps</button>
+    </div>
+    <p class="tiny">Tap anywhere for sunshine</p>
+  </div>
+</div>
+
+<div class="cover" id="cover">
+  <div class="cover-in">
+    <p class="cv-ur ur" lang="ur">سحر</p>
+    <p class="cv-t">Good morning, Sahar</p>
+    <p class="cv-s">Something for the bus ride 🚌</p>
+    <button class="horizon" id="horizon" type="button" aria-label="Tap the sun to start"><span class="sunb"></span><span class="hz"></span></button>
+    <p class="cv-hint" id="cvHint">Tap the sun</p>
+    <p class="cv-note">🎧 There's music. Headphones on, you're on a bus.</p>
+  </div>
+</div>
+
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<script>
+(() => {
+  const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
+  const rand = (a, b) => a + Math.random() * (b - a);
+  const pick = a => a[Math.floor(Math.random() * a.length)];
+  const buzz = (ms = 12) => { try { navigator.vibrate && navigator.vibrate(ms); } catch (e) {} };
+  const CONF = ['#ffd166', '#ff9a62', '#ff6f91', '#7b5cf0', '#2ec4b6', '#4d9dff', '#ffffff', '#7ee0c3'];
+  const SUN = ['#ffd166', '#fff1b8', '#ff9a62', '#ffffff'];
+
+  /* ---------- confetti: capsules, sparkles, dots ---------- */
+  const fx = $('#fx'); let fctx, FW, FH, raf = 0, last = 0;
+  const parts = [];
+  function fit() {
+    const d = Math.min(window.devicePixelRatio || 1, 2);
+    FW = window.innerWidth; FH = window.innerHeight;
+    fx.width = Math.round(FW * d); fx.height = Math.round(FH * d);
+    fctx = fx.getContext('2d'); fctx.setTransform(d, 0, 0, d, 0, 0);
+  }
+  function burst(x, y, o = {}) {
+    if (reduce) return;
+    const n = o.n || 26;
+    for (let i = 0; i < n; i++) {
+      const a = o.up ? rand(-2.7, -0.45) : rand(0, Math.PI * 2);
+      const sp = o.up ? rand(90, 280) : rand(140, o.power || 440);
+      const life = rand(1.1, 2.1);
+      const c1 = pick(o.colors || CONF);
+      parts.push({ x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - (o.up ? 0 : rand(80, 200)), g: o.up ? -10 : 520, life, max: life,
+        rot: rand(0, 6.28), vr: rand(-7, 7), s: rand(8, o.big ? 16 : 12), c: c1, c2: pick(CONF), k: pick(o.kinds || ['cap', 'r', 'c', 's']) });
+    }
+    if (!raf) raf = requestAnimationFrame(loop);
+  }
+  function burstAt(el, o) { const r = el.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 2, o); }
+  function loop(t) {
+    const dt = last ? Math.min(.05, (t - last) / 1000) : .016; last = t;
+    fctx.clearRect(0, 0, FW, FH);
+    for (let i = parts.length - 1; i >= 0; i--) {
+      const p = parts[i];
+      p.life -= dt;
+      if (p.life <= 0) { parts.splice(i, 1); continue; }
+      p.vx *= .986; p.vy = p.vy * .986 + p.g * dt; p.x += p.vx * dt; p.y += p.vy * dt; p.rot += p.vr * dt;
+      fctx.save(); fctx.globalAlpha = Math.min(1, p.life / p.max * 1.8); fctx.translate(p.x, p.y); fctx.rotate(p.rot);
+      if (p.k === 'cap') {
+        const w = p.s * 1.1, h = p.s * .5, r = h / 2;
+        fctx.fillStyle = p.c; fctx.beginPath(); fctx.moveTo(0, -r); fctx.lineTo(-w / 2 + r, -r); fctx.arc(-w / 2 + r, 0, r, -Math.PI / 2, Math.PI / 2, true); fctx.lineTo(0, r); fctx.closePath(); fctx.fill();
+        fctx.fillStyle = p.c2; fctx.beginPath(); fctx.moveTo(0, -r); fctx.lineTo(w / 2 - r, -r); fctx.arc(w / 2 - r, 0, r, -Math.PI / 2, Math.PI / 2); fctx.lineTo(0, r); fctx.closePath(); fctx.fill();
+      } else if (p.k === 'r') { fctx.fillStyle = p.c; fctx.fillRect(-p.s / 2, -p.s / 4, p.s, p.s / 2); }
+      else if (p.k === 'c') { fctx.fillStyle = p.c; fctx.beginPath(); fctx.arc(0, 0, p.s / 3, 0, Math.PI * 2); fctx.fill(); }
+      else { const s = p.s / 1.5; fctx.fillStyle = p.c; fctx.beginPath(); fctx.moveTo(0, -s); fctx.quadraticCurveTo(0, 0, s, 0); fctx.quadraticCurveTo(0, 0, 0, s); fctx.quadraticCurveTo(0, 0, -s, 0); fctx.quadraticCurveTo(0, 0, 0, -s); fctx.fill(); }
+      fctx.restore();
+    }
+    if (parts.length) raf = requestAnimationFrame(loop);
+    else { raf = 0; last = 0; fctx.clearRect(0, 0, FW, FH); }
+  }
+
+  /* ---------- music (Interlude.mp3 in the same folder) and soft chimes ---------- */
+  const music = new Audio();
+  let musicOK = true;
+  music.addEventListener('error', () => { musicOK = false; });
+  music.src = 'Interlude.mp3';
+  music.loop = true;
+  music.preload = 'auto';
+  let ac = null, soundOn = false;
+  function A() {
+    if (!ac) { try { ac = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { ac = null; } }
+    if (ac && ac.state === 'suspended') ac.resume();
+    return ac;
+  }
+  function tone(f, t0, dur, vol, type) {
+    const a = A(); if (!a) return;
+    const g = a.createGain(); g.connect(a.destination);
+    g.gain.setValueAtTime(.0001, t0); g.gain.exponentialRampToValueAtTime(vol, t0 + .012); g.gain.exponentialRampToValueAtTime(.0001, t0 + dur);
+    const o = a.createOscillator(); o.type = type || 'sine'; o.frequency.value = f; o.connect(g); o.start(t0); o.stop(t0 + dur + .05);
+  }
+  function tick() { if (!soundOn) return; const a = A(); if (!a) return; tone(pick([880, 988, 1175, 1319, 1568]), a.currentTime, .4, .045, 'triangle'); }
+  function chord() { if (!soundOn) return; const a = A(); if (!a) return; const t = a.currentTime; [659.25, 783.99, 987.77, 1318.5].forEach((f, i) => tone(f, t + i * .1, .9, .05, 'triangle')); }
+  function bell() { if (!soundOn) return; const a = A(); if (!a) return; const t = a.currentTime; tone(1046.5, t, 1.2, .09); tone(1568, t, .8, .03); }
+  function playMusic() { if (!musicOK) return; try { music.volume = .6; } catch (e) {} const p = music.play(); if (p && p.catch) p.catch(() => {}); }
+  const sBtn = $('#sound');
+  function setSound(on) {
+    soundOn = on;
+    sBtn.classList.toggle('on', on);
+    sBtn.setAttribute('aria-pressed', String(on));
+    sBtn.setAttribute('aria-label', on ? 'Turn music off' : 'Turn music on');
+    if (on) { A(); playMusic(); } else music.pause();
+  }
+  sBtn.addEventListener('click', () => setSound(!soundOn));
+  document.addEventListener('visibilitychange', () => { if (!soundOn) return; if (document.hidden) music.pause(); else playMusic(); });
+  function joy(el, n) { if (el) burstAt(el, { n: n || 16 }); tick(); buzz(); }
+
+  /* ---------- sky + route ---------- */
+  const layers = $$('.sky > i');
+  function setSky(level) {
+    layers.forEach((L, i) => L.classList.toggle('on', i <= level));
+    $('#stars').style.opacity = Math.max(0, 1 - level * .28);
+  }
+  const scenes = $$('.scene'), LAST = scenes.length - 1, stage = $('#stage');
+  const stops = $$('.stop'), lane = $('#lane'), bus = $('#bus');
+  const nextBtn = $('#next'), backBtn = $('#back'), nextLbl = $('#nextLabel');
+  const NAMES = ['Your name', 'Rx', 'Q bank', 'Steps', 'Bath Ave'];
+  const done = new Set();
+  let cur = 0, maxSeen = 0, skyLevel = 0;
+  function layoutRoad() {
+    const c = stops.map(s => s.offsetLeft + s.offsetWidth / 2);
+    lane.style.left = (c[0] - 10) + 'px'; lane.style.width = (c[c.length - 1] - c[0] + 20) + 'px';
+    bus.style.transform = `translateX(${c[cur] - 23}px)`;
+  }
+  function updateNav() {
+    backBtn.disabled = cur === 0;
+    nextBtn.hidden = cur >= LAST;
+    if (cur < LAST) nextLbl.textContent = 'Next: ' + NAMES[cur + 1];
+    nextBtn.classList.toggle('ready', done.has(cur));
+    stops.forEach((s, i) => {
+      s.classList.toggle('now', i === cur); s.classList.toggle('past', i < cur);
+      s.disabled = i > maxSeen;
+      if (i === cur) s.setAttribute('aria-current', 'step'); else s.removeAttribute('aria-current');
+      s.setAttribute('aria-label', NAMES[i] + (i > maxSeen ? ', not reached yet' : ''));
+    });
+    layoutRoad();
+  }
+  function go(i) {
+    if (i < 0 || i > LAST || i === cur) return;
+    scenes[cur].hidden = true; scenes[cur].classList.remove('enter');
+    cur = i; maxSeen = Math.max(maxSeen, i);
+    const s = scenes[cur]; s.hidden = false; void s.offsetWidth; s.classList.add('enter');
+    stage.scrollTop = 0;
+    skyLevel = Math.max(skyLevel, i + 1); setSky(Math.min(skyLevel, 4 + (done.size === 5 ? 1 : 0)));
+    updateNav(); tick();
+    if (cur === LAST) setTimeout(() => $('#arrive').classList.add('here'), 250);
+  }
+  function markDone(i) {
+    if (done.has(i)) return;
+    done.add(i); chord();
+    if (i === cur) nextBtn.classList.add('ready');
+  }
+  stops.forEach((s, i) => s.addEventListener('click', () => { if (i <= maxSeen && i !== cur) { buzz(); go(i); } }));
+  nextBtn.addEventListener('click', () => { buzz(); go(cur + 1); });
+  backBtn.addEventListener('click', () => go(cur - 1));
+  document.addEventListener('keydown', e => {
+    if (!fin.hidden) { if (e.key === 'Escape') closeFinale(); return; }
+    if (!cover.hidden) return;
+    if (e.key === 'ArrowRight') go(cur + 1);
+    if (e.key === 'ArrowLeft') go(cur - 1);
+  });
+
+  /* ---------- cover ---------- */
+  const cover = $('#cover'), hz = $('#horizon');
+  hz.addEventListener('click', () => {
+    if (hz.classList.contains('up')) return;
+    hz.classList.add('up'); buzz(25);
+    setSound(true);
+    const h = $('#cvHint'); h.style.animation = 'none'; h.textContent = 'Good morning, Dr. Sahar ☀️';
+    setTimeout(() => { burstAt(hz.querySelector('.sunb'), { n: 70, power: 500, big: true, colors: SUN.concat(['#ff6f91', '#7b5cf0']) }); chord(); }, reduce ? 0 : 700);
+    setTimeout(() => cover.classList.add('leaving'), reduce ? 0 : 1700);
+    setTimeout(() => {
+      cover.hidden = true; fit(); layoutRoad();
+      skyLevel = 1; setSky(1);
+      scenes[0].classList.add('enter');
+      nextBtn.focus({ preventScroll: true });
+    }, reduce ? 60 : 2600);
+  });
+
+  /* ---------- 1 name ---------- */
+  const lts = $$('.lt'); let litN = 0;
+  lts.forEach(l => l.addEventListener('click', () => {
+    joy(l, 22);
+    const card = $('#ltCard');
+    card.innerHTML = `<b style="color:${getComputedStyle(l).getPropertyValue('--c')}">${l.dataset.t}</b><span>${l.dataset.d}</span>`;
+    card.classList.remove('pop'); void card.offsetWidth; card.classList.add('pop');
+    if (l.classList.contains('on')) return;
+    l.classList.add('on'); l.setAttribute('aria-pressed', 'true');
+    if (++litN === lts.length) {
+      setTimeout(() => {
+        const m = $('#meaning'); m.hidden = false;
+        m.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' });
+        burstAt(m, { n: 60, power: 480, colors: SUN.concat(['#ff6f91']) });
+        markDone(0);
+      }, 500);
+    }
+  }));
+
+  /* ---------- 2 rx ---------- */
+  try { $('#rxDate').textContent = new Intl.DateTimeFormat('en-US', { timeZone: 'America/New_York', weekday: 'short', month: 'short', day: 'numeric' }).format(new Date()); } catch (e) {}
+  const doses = $$('.dose'); let opened = 0;
+  doses.forEach(d => d.addEventListener('click', () => {
+    joy(d.querySelector('.cap'), 18);
+    if (d.classList.contains('open')) return;
+    d.classList.add('open'); d.setAttribute('aria-pressed', 'true');
+    opened++;
+    $('#rxStatus').textContent = opened < doses.length ? `${opened} of ${doses.length} doses opened` : 'All doses taken. Refills are unlimited, so come back anytime.';
+    if (opened === doses.length) { burstAt($('.rx-foot .sig'), { n: 60, power: 480 }); markDone(1); }
+  }));
+
+  /* ---------- 3 qbank ---------- */
+  $('#labBtn').addEventListener('click', e => {
+    const b = e.currentTarget, on = b.getAttribute('aria-pressed') !== 'true';
+    b.setAttribute('aria-pressed', String(on)); $('#labs').hidden = !on; joy(b, 10);
+  });
+  $('#markBtn').addEventListener('click', e => {
+    const b = e.currentTarget, on = b.getAttribute('aria-pressed') !== 'true';
+    b.setAttribute('aria-pressed', String(on)); b.textContent = on ? '⚑ Marked' : '⚑ Mark'; joy(b, 10);
+  });
+  const opts = $$('.opt'); let solved = false;
+  opts.forEach(o => o.addEventListener('click', () => {
+    if (solved) { joy(o, 8); return; }
+    if (o.dataset.right) {
+      solved = true; o.classList.add('right');
+      opts.forEach(x => { x.disabled = x !== o && !x.classList.contains('wrong'); });
+      const ex = $('#explain'); ex.hidden = false;
+      setTimeout(() => ex.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' }), 60);
+      burstAt(o, { n: 70, power: 520 }); buzz(30);
+      markDone(2);
+      return;
+    }
+    joy(o, 8);
+    if (o.classList.contains('wrong')) return;
+    o.classList.add('wrong');
+    const fb = document.createElement('span'); fb.className = 'fb'; fb.textContent = o.dataset.fb;
+    o.appendChild(fb);
+  }));
+
+  /* ---------- 4 steps ---------- */
+  const steps = $$('.step'); let climbed = 0;
+  steps.forEach(s => s.addEventListener('click', () => {
+    joy(s.querySelector('.ic'), s.classList.contains('future') ? 30 : 16);
+    if (s.classList.contains('on')) return;
+    s.classList.add('on'); s.setAttribute('aria-pressed', 'true');
+    if (++climbed === steps.length) {
+      const q = $('#stepQuote'); q.hidden = false; q.classList.add('pop');
+      setTimeout(() => q.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' }), 60);
+      burstAt(steps[steps.length - 1], { n: 70, power: 520, kinds: ['s', 'c'], colors: SUN });
+      markDone(3);
+    }
+  }));
+
+  /* ---------- 5 arrive + finale ---------- */
+  const fin = $('#finale');
+  let fTimers = [];
+  $('#cord').addEventListener('click', e => {
+    const sr = $('#sr'); sr.classList.add('lit'); bell(); buzz(40);
+    burstAt(e.currentTarget, { n: 30 });
+    markDone(4);
+    skyLevel = 5; setSky(5);
+    fTimers.push(setTimeout(openFinale, reduce ? 0 : 900));
+  });
+  function openFinale() {
+    fin.hidden = false; fin.scrollTop = 0;
+    $('#finTitle').focus({ preventScroll: true });
+    chord();
+    [80, 500, 950, 1500, 2200].forEach(ms => fTimers.push(setTimeout(() => burst(rand(FW * .2, FW * .8), rand(FH * .2, FH * .5), { n: 70, power: 600, big: true }), ms)));
+  }
+  function closeFinale() { fin.hidden = true; fTimers.forEach(clearTimeout); fTimers = []; }
+  fin.addEventListener('pointerdown', e => { if (e.target.closest('button')) return; burst(e.clientX, e.clientY, { n: 28, colors: SUN.concat(['#ff6f91']) }); tick(); buzz(); });
+  $('#again').addEventListener('click', () => { closeFinale(); go(0); });
+  $('#toSteps').addEventListener('click', () => { closeFinale(); go(3); });
+
+  /* ---------- start ---------- */
+  fit(); updateNav(); setSky(0);
+  window.addEventListener('resize', () => { fit(); layoutRoad(); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(layoutRoad);
+})();
+</script>
+</body>
+</html>
